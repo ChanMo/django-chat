@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<style>
+body {
+  background: #ffffff;
+  height:100%;
+}
+#message-container{
+  background-color: #F5F4F4;
+}
+.sc-AxiKw{
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+.eCDKsz .sc-AxiKw{
+  border-radius: 1.2rem 1.2rem 1.2rem 0 !important;
+}
+.kVWOcK .sc-AxiKw{
+  border-radius: 1.2rem 1.2rem 0 1.2rem !important;
+}
+.gRxkLn{
+  background-color: #ffffff;
+}
+.OfGvQ{
+  border-radius: 1.875rem !important;
+  background-color: #F5F4F4 !important;
+  border: none !important;
+}
+.jzrVUN{
+  border-top: none !important;
+}
+</style>
+{% endblock %}
+{% block main %}
+<div style="margin-top:3.5rem;height:calc(100vh - 7.5rem);" id="root">
+</div>
+{% include "footer.html" with current="chat" %}
+{% endblock %}
+{% block js %}
+  <script>
+    window.props = {
+      "id": "{{room.uuid}}",
+      "user": "{{user.id}}",
+      {% if product %}"premsg": {"mtype":"product", "msg":"{{product}}"}{% endif %}
+    }
+  </script>
+<script src="{% static "dist/room.bundle.js" %}"></script>
+{% endblock %}

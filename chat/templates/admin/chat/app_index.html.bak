@@ -1,0 +1,54 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static %}
+
+{% block extrastyle %}
+  {{ block.super }}
+<style>
+#content-main {
+  margin-top: 3rem;
+  display: flex;
+}
+#content-main > div:first-child {
+  padding: 0 1rem;
+  width: 200px;
+}
+#content-main > div:last-child {
+  padding: 1rem;
+  box-sizing: border-box;
+  width: 200px;
+}
+#root {
+  flex: 1;
+  height: calc(100vh - 10rem);
+  background: rgba(0,0,0,0.04);
+}
+</style>
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+  <script type="text/javascript" src="{% static "admin/js/vendor/jquery/jquery.js" %}"></script>
+  <script type="text/javascript" src="{% static "admin/js/jquery.init.js" %}"></script>
+
+{% endblock %}
+
+{% block content_title %}{% endblock %}
+{% block content %}
+  <div id="content-main">
+    <div>
+      <ul>
+        {% for row in results %}
+        <li>#{% for item in row %}{{row}}{% endfor %}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div id="root">
+    </div>
+    <div>
+      <h3>快速回复</h3>
+      <p>您好</p>
+      <p>Hello</p>
+    </div>
+  </div>
+{% endblock %}
+

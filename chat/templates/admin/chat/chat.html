@@ -1,0 +1,38 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block extrastyle %}
+  {{ block.super }}
+<style>
+#content-main {
+  padding: 0 !important;
+  margin-top: 3.5rem;
+}
+#root {
+  margin-top: -3.5rem;
+  height: calc(100vh - 9rem);
+}
+li {
+  list-style: none !important;
+}
+</style>
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+{{ media.js }}
+{% endblock %}
+
+{% block content %}
+  <div id="content-main">
+    <div id="root"></div>
+  </div>
+{% endblock %}
+{% block footer %}
+<script>
+  window.props = {
+    user: {{user.id}}
+  }
+</script>
+<script src="{% static "dist/chat.bundle.js" %}"></script>
+{% endblock %}

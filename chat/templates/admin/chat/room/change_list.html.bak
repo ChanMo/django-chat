@@ -1,0 +1,35 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block extrastyle %}
+  {{ block.super }}
+<style>
+#content-main {
+  padding: 0 !important;
+  margin-top: 3.5rem;
+}
+#root {
+  height: calc(100vh - 9rem);
+}
+</style>
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+{{ media.js }}
+{% endblock %}
+
+{% block content_title %}{% endblock %}
+{% block content %}
+  <div id="content-main">
+    <div id="root"></div>
+  </div>
+{% endblock %}
+{% block footer %}
+<script>
+  window.props = {
+    "rooms": [{% for row in cl.result_list %}{'uuid':'{{row.uuid}}', 'name':'{{row.name}}', 'avatar':'{{row.avatar}}'}{% endfor %}],
+  }
+</script>
+<script src="{% static "dist/chat.bundle.js" %}"></script>
+{% endblock %}
